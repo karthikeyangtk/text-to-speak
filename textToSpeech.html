@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Text to speech</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Text to speak</h2>
+      </div>
+      <div>
+        <textarea
+          id="text-to-speak"
+          placeholder="Enter text to Speak"
+        ></textarea>
+      </div>
+      <div class="speak">
+        <button
+          class="speak-button"
+          onclick="textToSpeech()"
+          id="text-to-speech"
+        >
+          Speak
+        </button>
+      </div>
+    </div>
+
+    <script type="application/javascript">
+      function textToSpeech() {
+        const value = document.getElementById("text-to-speak").value || "";
+
+        if (!value) {
+          return alert("Enter text to Speak");
+        }
+
+        // Create a new SpeechSynthesisUtterance object
+        const audio = new SpeechSynthesisUtterance();
+
+        // Adda value to the text
+        audio.text = value;
+
+        // Get browser value
+        audio.voice = window.speechSynthesis.getVoices()?.[0];
+
+        //Speak the text
+        window.speechSynthesis.speak(audio);
+      }
+    </script>
+
+    <style>
+      .container {
+        margin: 20px;
+      }
+
+      .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      textarea {
+        width: 50%;
+        height: 150px;
+      }
+
+      .speak {
+        width: 50%;
+      }
+      .speak-button {
+        float: right;
+        border: none;
+        padding: 10px;
+        background: lightgreen;
+        margin-top: 10px;
+      }
+    </style>
+  </body>
+</html>
